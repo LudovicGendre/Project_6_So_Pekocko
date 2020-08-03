@@ -1,4 +1,6 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+var cors = require('cors')
 
 const app = express();
 
@@ -10,7 +12,16 @@ app.use((req, res, next) => {
     next();
   });
 
+app.use(bodyParser.json());
+app.use(cors());
 
-app.use(cors())
+
+
+app.post('/api/auth/signup', (req, res, next) =>{
+    console.log(req.body);
+    res.status(201).json({
+        message: 'adresse validé'
+    });
+});
 
 module.exports = app;
