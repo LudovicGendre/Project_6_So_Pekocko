@@ -1,11 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+
+
+const users = require('./models/users');
 var cors = require('cors')
 
 const app = express();
 
-mongoose.connect('mongodb+srv://ludovicgendre:test01@cluster0-pme76.mongodb.net/test?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://ludovicgendre:test01@cluster0.lopms.mongodb.net/test?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -25,6 +28,13 @@ app.use(cors());
 
 
 app.post('/api/auth/signup', (req, res, next) =>{
+    console.log(req.body);
+    res.status(201).json({
+        message: 'adresse validé'
+    });
+});
+
+app.post('/api/auth/login', (req, res, next) =>{
     console.log(req.body);
     res.status(201).json({
         message: 'adresse validé'
